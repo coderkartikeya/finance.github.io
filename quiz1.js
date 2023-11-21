@@ -1,45 +1,79 @@
 const questions = [
-    {
+  {
       question: "What does 'Demat' stand for in the context of financial accounts?",
-      options: [
-        { option: "Deposit Management", isCorrect: false },
-        { option: "Dematerialized", isCorrect: true },
-        { option: "Digital Account", isCorrect: false },
-        { option: "Document Maintenance", isCorrect: false }
-      ]
-    },
-    {
+      options: ["Deposit Management", "Dematerialized", "Digital Account", "Document Maintenance"],
+      correctAnswer: "Dematerialized"
+  },
+  {
       question: "Which of the following is the primary purpose of a Demat account?",
-      options: [
-        { option: "Opening a savings account", isCorrect: false },
-        { option: "Trading in stocks and securities", isCorrect: true },
-        { option: "Borrowing money", isCorrect: false },
-        { option: "Tracking personal expenses", isCorrect: false }
-      ]
-    },
-    {
+      options: ["Opening a savings account", "Trading in stocks and securities", "Borrowing money", "Tracking personal expenses"],
+      correctAnswer: "Trading in stocks and securities"
+  },
+  {
       question: "Who typically provides Demat account services?",
-      options: [
-        { option: "Supermarkets", isCorrect: false },
-        { option: "Banks and financial institutions", isCorrect: true },
-        { option: "Mobile service providers", isCorrect: false },
-        { option: "Educational institutions", isCorrect: false }
-      ]
-    },
-    {
+      options: ["Supermarkets", "Banks and financial institutions", "Mobile service providers", "Educational institutions"],
+      correctAnswer: "Banks and financial institutions"
+  },
+  {
       question: "What is the main advantage of holding securities in a Demat account?",
-      options: [
-        { option: "Earning high-interest rates", isCorrect: false },
-        { option: "Avoiding market fluctuations", isCorrect: false },
-        { option: "Physical certificates are more secure", isCorrect: false },
-        { option: "Easier tracking and transfer of securities", isCorrect: true }
-      ]
+      options: ["Earning high-interest rates", "Avoiding market fluctuations", "Physical certificates are more secure", "Easier tracking and transfer of securities"],
+      correctAnswer: "Easier tracking and transfer of securities"
+  }
+];
+
+let currentQuestionIndex = 0;
+    let userScore = 0;
+
+    function displayQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        document.getElementById("question").innerText = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+
+        const optionsContainer = document.getElementById("optionsContainer");
+        optionsContainer.innerHTML = "";
+        currentQuestion.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.classList.add("option");
+            button.innerText = option;
+            button.onclick = function () {
+                checkAnswer(this);
+            };
+            optionsContainer.appendChild(button);
+        });
     }
-  ];
 
+    function checkAnswer(selectedOption) {
+        const currentQuestion = questions[currentQuestionIndex];
+        const userAnswer = selectedOption.innerText;
 
-  const ele=document.getElementById('question');
-  ele.innerHTML='<div class="cl"><h1>'+questions[0].question+'</h1></div>'+
-  '<div class="cl"><h1>'+'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, at cupiditate. Itaque.'+'</h1></div>';
+        if (userAnswer === currentQuestion.correctAnswer) {
+            userScore++;
+        }
 
+        document.querySelectorAll(".option").forEach(option => {
+            option.disabled = true;
+        });
+    }
 
+    function nextQuestion() {
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+            document.querySelectorAll(".option").forEach(option => {
+                option.disabled = false;
+            });
+        } else {
+            displayResult();
+        }
+    }
+
+    function displayResult() {
+        const resultContainer = document.getElementById("resultContainer");
+        resultContainer.style.display = "block";
+
+        const result = document.getElementById("result");
+        result.innerText = `Your Score: ${userScore} / ${questions.length}`;
+    }
+
+    // Initial display
+    displayQuestion();

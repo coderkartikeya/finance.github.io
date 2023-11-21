@@ -14,11 +14,11 @@
                 <!-- designing the  -->
                 <div class="shape priority">1</div>
                 <div class="dash priority-dash">-</div>
-                <div class="shape">2</div>
-                <div class="dash">-</div>
-                <div class="shape">3</div>
-                <div class="dash">-</div>
-                <div class="shape">4</div>
+                <div class="shape" id="1">2</div>
+                <div class="dash" id="11">-</div>
+                <div class="shape" id="2">3</div>
+                <div class="dash" id="22">-</div>
+                <div class="shape" id="3">4</div>
                 
 
             </div>
@@ -26,21 +26,136 @@
 
         <div class="questions" id="question">
             <div class="cl">
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sed optio magnam.</h1>
+                <h2 id="ques">Question 1:</h2>
 
             </div>
             <div class="cl">
                 <img src="quiz1/asset 1.png" alt="image" class="image">
             </div>
-            <div class="cl">
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, at cupiditate. Itaque.</h1>
+            <div class="options" id="questionContainer">
+                <button class="option" onclick="checkAnswer(this)">Option 1</button>
+                <button class="option" onclick="checkAnswer(this)">Option 2</button>
+                <button class="option" onclick="checkAnswer(this)">Option 3</button>
+                <button class="option" onclick="checkAnswer(this)">Option 4</button>
             </div>
+            
             
 
         </div>
+        <div>
+            <button class="nxt" onclick="nextQuestion()">Next</button>
+        <button class="nxt" onclick="previous()">previous</button>
 
+        </div>
+        
+        <div class="result-container" id="resultContainer" style="display: none;">
+            <h2 id="result">Quiz Result</h2>
+        </div>
     </div>
-    <script src="quiz1.js"></script>
+    <script>
+        const questions = [
+  {
+      question: "What does 'Demat' stand for in the context of financial accounts?",
+      options: ["Deposit Management", "Dematerialized", "Digital Account", "Document Maintenance"],
+      correctAnswer: "Dematerialized"
+  },
+  {
+      question: "Which of the following is the primary purpose of a Demat account?",
+      options: ["Opening a savings account", "Trading in stocks and securities", "Borrowing money", "Tracking personal expenses"],
+      correctAnswer: "Trading in stocks and securities"
+  },
+  {
+      question: "Who typically provides Demat account services?",
+      options: ["Supermarkets", "Banks and financial institutions", "Mobile service providers", "Educational institutions"],
+      correctAnswer: "Banks and financial institutions"
+  },
+  {
+      question: "What is the main advantage of holding securities in a Demat account?",
+      options: ["Earning high-interest rates", "Avoiding market fluctuations", "Physical certificates are more secure", "Easier tracking and transfer of securities"],
+      correctAnswer: "Easier tracking and transfer of securities"
+  }
+];
+
+let currentQuestionIndex = 0;
+    let userScore = 0;
+
+    function displayQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        document.getElementById("ques").innerText = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+
+        const optionsContainer = document.getElementById("questionContainer");
+        optionsContainer.innerHTML = "";
+        currentQuestion.options.forEach((option, index) => {
+            const button = document.createElement("button");
+            button.classList.add("option");
+            button.innerText = option;
+            button.onclick = function () {
+                checkAnswer(this);
+            };
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedOption) {
+        const currentQuestion = questions[currentQuestionIndex];
+        const userAnswer = selectedOption.innerText;
+
+        if (userAnswer === currentQuestion.correctAnswer) {
+            userScore++;
+        }
+
+        document.querySelectorAll(".option").forEach(option => {
+            option.disabled = true;
+        });
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+            if(currentQuestionIndex!=0){
+                document.getElementById(`${currentQuestionIndex}`).classList.add("priority");
+                document.getElementById(`${currentQuestionIndex}${currentQuestionIndex}`).classList.add("priority-dash");
+
+            }
+           
+            document.querySelectorAll(".option").forEach(option => {
+                option.disabled = false;
+            });
+        } else {
+            displayResult();
+        }
+    }
+    function previous() {
+        currentQuestionIndex--;
+
+        if (currentQuestionIndex >=0) {
+            displayQuestion();
+            if(currentQuestionIndex++!=0){
+                document.getElementById(`${currentQuestionIndex++}`).classList.remove("priority");
+                document.getElementById(`${currentQuestionIndex++}${currentQuestionIndex++}`).classList.remove("priority-dash");
+           
+
+            }
+            
+            document.querySelectorAll(".option").forEach(option => {
+                option.disabled = false;
+            });
+        } 
+    }
+
+    function displayResult() {
+        const resultContainer = document.getElementById("resultContainer");
+        resultContainer.style.display = "block";
+
+        const result = document.getElementById("result");
+        result.innerText = `Your Score: ${userScore} / ${questions.length}`;
+    }
+
+    // Initial display
+    displayQuestion();
+    </script>
     
 </body>
 </html>
