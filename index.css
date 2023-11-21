@@ -1,109 +1,126 @@
-*{
+/* Reset default margin and padding for all elements */
+* {
     padding: 0;
     margin: 0;
 }
 
-.side-bar{
+/* Sidebar styles */
+.side-bar {
     background-color: #1f2937;
     height: 100vh;
     width: 25vh;
     padding: 20px;
     position: fixed;
-
 }
 
-.card a{
+/* Styling for links inside cards */
+.card a {
     text-decoration: none;
     color: white;
     font-size: 21px;
     font-family: sans-serif;
 }
-.main{
+
+/* Main content area */
+.main {
     height: 100vh;
     width: 100vw;
     background-color: #e5e7eb;
     display: flex;
     flex-direction: row;
 }
-.card{
+
+/* Common styling for cards */
+.card {
     width: 10vw;
     height: 5vh;
     border-radius: 1.5em;
     margin: 10px;
     padding: 15px;
     gap: 9px;
-
 }
 
-.card:hover{
+/* Hover effect on cards */
+.card:hover {
     background-color: #2a3b53;
 }
 
-.dash{
-    
+/* Dashboard styles */
+.dash {
     margin-left: 14vw;
     width: 84.5vw;
-    /* background-color: aqua; */
 }
-.nav{
-    
+
+/* Navigation bar styles */
+.nav {
     padding: 10px;
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-    
 }
-.search{
+
+/* Search bar styles */
+.search {
     border-radius: 1em;
     background-color: white;
     padding: 10px;
     width: 15vw;
     margin: 10px;
-    
 }
-.search-other{
+
+/* Styles for the search bar and other elements inside it */
+.search-other {
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
-.graph{
+
+/* Graph container styles */
+.graph {
     background-color: #ffeed6;
     margin: 17px;
     padding: 9px;
     height: 50vh;
     border-radius: 1em;
 }
-/* classes not visible on desktop view */
-.buttn{
+
+/* Styles for elements not visible on desktop view */
+.buttn {
     display: none;
 }
-/* class used by all the programm */
-.flex-col{
+
+/* Generic flex container styles */
+.flex-col {
     display: flex;
     flex-direction: column;
 }
-.flex-row{
+
+.flex-row {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.input{
-    border:0px;
+
+/* Input styles */
+.input {
+    border: 0px;
     padding: 6px;
-    width: 15vw;    
+    width: 15vw;
 }
-.input:focus{
-    border:0px solid gray;
+
+.input:focus {
+    outline: none;
 }
-/* side bar icon */
-.icon{
+
+/* Sidebar icon styles */
+.icon {
     height: 23px;
-    
 }
-.priority{
+
+/* Priority card styles */
+.priority {
     width: 10vw;
     height: 5vh;
     border-radius: 1.5em;
@@ -111,55 +128,67 @@
     padding: 15px;
     gap: 9px;
     background-color: #2a3b53;
-
 }
 
-.cross{
+/* Cross button styles */
+.cross {
     visibility: hidden;
 }
 
-@media screen and (max-width:768px){
-    .buttn{
+/* Media query for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+    .buttn {
         display: inline;
         margin: 10px;
         padding: 5px;
     }
-    .buttn img{
+
+    .buttn img {
         background-color: gray;
         color: black;
         padding: 5px;
-        border-radius: .3em;
+        border-radius: 0.3em;
     }
-    .buttn button{
+
+    .buttn button {
         border: 0px;
     }
-    .side-bar{
-        visibility:hidden;
+
+    .side-bar {
+        visibility: hidden;
         width: 100vw;
         align-items: center;
     }
-    .card{
+
+    .card {
         width: 60vw;
     }
-    .card a{
+
+    .card a {
         font-size: 25px;
     }
-    
-    .dash{
+
+    .dash {
         margin: 0px;
         width: 100vw;
     }
-    .search{
+
+    .search {
         width: 35vw;
     }
-    .cross button{
-        background-color:#1f2937;
+
+    .cross button {
+        background-color: #1f2937;
         padding: 5px;
         border: 0px;
     }
-    /* classes remain same for all */
-    .icon{
-        height: 37px;
+
+    .nav {
+        justify-content: space-around;
     }
 
+    /* Common class for icons */
+    .icon {
+        height: 32px;
+    }
 }

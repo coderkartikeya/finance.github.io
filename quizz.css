@@ -4,24 +4,27 @@
 }
 
 .side-bar{
-    background-color: #1f2937;
-    height: 100vh;
-    width: 25vh;
-    padding: 20px;
+    background-color: white;
+    /* background-color: #1f2937; */
+    z-index: 10;
+    height: 40px;
+    width: 100vw;
+    padding: 23px;
     position: fixed;
 
 }
 
 .card a{
     text-decoration: none;
-    color: white;
+    color: black;
+    
     font-size: 21px;
     font-family: sans-serif;
 }
 .main{
     height: 100vh;
     width: 100vw;
-    background-color: #e5e7eb;
+    
     display: flex;
     flex-direction: row;
 }
@@ -32,12 +35,10 @@
     margin: 10px;
     padding: 15px;
     gap: 9px;
+    
 
 }
 
-.card:hover{
-    background-color: #2a3b53;
-}
 
 
 .flex-col{
@@ -73,13 +74,51 @@
     margin: 10px;
     padding: 15px;
     gap: 9px;
-    background-color: #2a3b53;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
 
 }
 
 .cross{
     visibility: hidden;
 }
+
+/* side banner design */
+
+.left{
+    
+    margin-top: 10vh;
+    
+    height: 100vh;
+    
+}
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/bg_1.jpg');
+    background-size: cover;
+    filter: blur(4px);
+    
+}
+.text{
+ 
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  font-size: 7vw;
+  font-family: sans-serif;
+}
+
 
 @media screen and (max-width:768px){
     .buttn{
@@ -98,6 +137,7 @@
     }
     .side-bar{
         visibility:hidden;
+        height: 100vh;
         width: 100vw;
         align-items: center;
     }
@@ -114,6 +154,19 @@
         background-color:#1f2937;
         padding: 5px;
         border: 0px;
+    }
+
+    /* banner */
+    #banner{
+        height: 40vh;
+    }
+    .left{
+        margin-left: 15px;
+        padding: 10px;
+    }
+
+    .text{
+        z-index: 0;
     }
     /* classes remain same for all */
     .icon{
